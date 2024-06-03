@@ -16,7 +16,7 @@ import java.util.List;
 @Configuration
 public class SecurityConfig {
 
-    //    @Bean
+    @Bean
     public UserDetailsService userDetailsService(PasswordEncoder encoder){
 
         List<UserDetails> userList = new ArrayList<>();
