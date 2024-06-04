@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,22 +19,22 @@ import java.util.List;
 @Configuration
 public class SecurityConfig {
 
-  // @Bean
-  // public UserDetailsService userDetailsService(PasswordEncoder encoder){
+    // @Bean
+    // public UserDetailsService userDetailsService(PasswordEncoder encoder){
 
-  //     List<UserDetails> userList = new ArrayList<>();
+    //     List<UserDetails> userList = new ArrayList<>();
 
-  //     userList.add(
-  //             new User("mike",encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")))
-  //     );
+    //     userList.add(
+    //             new User("mike",encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")))
+    //     );
 
-  //     userList.add(
-  //             new User("ozzy",encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_MANAGER")))
-  //     );
+    //     userList.add(
+    //             new User("ozzy",encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_MANAGER")))
+    //     );
 
-  //     return new InMemoryUserDetailsManager(userList);
+    //     return new InMemoryUserDetailsManager(userList);
 
-   // }
+    // }
 
 
     @Bean
@@ -63,7 +64,12 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/welcome")
                 .failureUrl("/login?error=true")
                 .permitAll()
-                .and().build();
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
+                .and()
+                .build();
     }
 
 }
