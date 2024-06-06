@@ -71,7 +71,7 @@ public class SecurityConfig {
                 .and()
                 .rememberMe()
                 .tokenValiditySeconds(120)
-                .key("cydeo")
+                .key("zee")
                 .userDetailsService(securityService)
                 .and()
                 .build();

@@ -1,7 +1,6 @@
 package com.cydeo.controller;
 
 import com.cydeo.dto.ProjectDTO;
-import com.cydeo.dto.UserDTO;
 import com.cydeo.service.ProjectService;
 import com.cydeo.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -19,8 +18,9 @@ public class ProjectController {
     private final UserService userService;
     private final ProjectService projectService;
 
-    public ProjectController(UserService userService, ProjectService projectService) {
-        this.userService = userService;
+    public ProjectController(UserService userService, UserService userService1, ProjectService projectService) {
+        this.userService = userService1;
+
         this.projectService = projectService;
     }
 
